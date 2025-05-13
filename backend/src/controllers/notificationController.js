@@ -17,6 +17,10 @@ function parseFrequency(frequency) {
     return null;
 }
 
+function randomDelay(min = 10000, max = 25000) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 const getNotifications = async (req, res, next) => {
     try {
         const result = await axios.get(process.env.NOTIFICATION_API_URL+"/notifications/");
@@ -39,10 +43,11 @@ const getNotifications = async (req, res, next) => {
                     if (shouldSend) {
                         try {
                             await whatsappService.sendMessage(recipientId.phone, message);
-                            // Optionally update sentAt here if needed
                         } catch (err) {
                             console.error('Failed to send WhatsApp message:', err);
                         }
+                        // Wait random 10-25 seconds before next message
+                        await new Promise(resolve => setTimeout(resolve, randomDelay()));
                     }
                 }
             }
