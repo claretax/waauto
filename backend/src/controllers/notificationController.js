@@ -20,8 +20,18 @@ function parseFrequency(frequency) {
 function randomDelay(min = 10000, max = 25000) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 const getNotifications = async (req, res, next) => {
+    try {
+        const result = await axios.get(process.env.NOTIFICATION_API_URL+"/notifications/");
+        const notificationsData = result.data;
+        res.json(notificationsData);
+    }
+    catch (err) {
+        next(err);
+    }
+};
+
+const sendNotifications = async (req, res, next) => {
     try {
         const result = await axios.get(process.env.NOTIFICATION_API_URL+"/notifications/");
         const notificationsData = result.data;
@@ -60,4 +70,5 @@ const getNotifications = async (req, res, next) => {
 
 module.exports = {
     getNotifications,
+    sendNotifications
 };
