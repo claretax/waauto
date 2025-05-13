@@ -1,0 +1,47 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build output
+dist/
+build/q
+out/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Dependencies
+package-lock.json
+yarn.lock
+
+# Testing
+coverage/
+
+# Misc
+.cache/
+.temp/
+
+# authdata
+.wwebjs_auth
+.wwebjs_cache
+.wwebjs_auth
+.wwebjs_auth_backup
+.wwebjs_auth_info
+.wwebjs_auth_media
+.wwebjs_auth_wa
+.wwebjs_auth_wa4
